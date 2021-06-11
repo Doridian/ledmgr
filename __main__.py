@@ -13,7 +13,7 @@ fh.close()
 led_controllers = {}
 disk_controllers = {}
 mappings = {}
-for ctrl in range(config['led_controllers']):
+for ctrl in config['led_controllers']:
     type = ctrl['type'].lower()
     if type == 'em_message':
         CTor = EMMessageLEDController
@@ -22,7 +22,7 @@ for ctrl in range(config['led_controllers']):
     ctrlo = CTor(config)
     led_controllers[ctrlo.id] = ctrlo
 
-for ctrl in range(config['disk_controllers']):
+for ctrl in config['disk_controllers']:
     ctrlo = DiskController(config)
     disk_controllers[ctrlo.id] = ctrlo
 
