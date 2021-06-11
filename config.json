@@ -23,7 +23,8 @@
         {
             "id": "SAS",
             "dev": "/sys/devices/pci0000:00/0000:00:02.0/0000:03:00.0/host*",
-            "subdev": "port-*:#"
+            "subdev": "phy-*:#",
+            "subdev_find": "port-*:#"
         }
     ],
     "mappings": [
