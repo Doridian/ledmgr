@@ -37,19 +37,19 @@
             "to": "SATA:1"
         },
         {
-            "from": "SAS:1",
+            "from": "SAS:0",
             "to": "SATA:3"
         },
         {
-            "from": "SAS:0",
+            "from": "SAS:1",
             "to": "SCU:0"
         },
         {
-            "from": "SAS:2",
+            "from": "SAS:6",
             "to": "SCU:3"
         },
         {
-            "from": "SAS:3",
+            "from": "SAS:7",
             "to": "SCU:2"
         },
         {
