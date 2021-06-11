@@ -33,4 +33,4 @@ class SGPIOLEDController(LEDController):
         return (self.state >> b) & 0xFF
 
     def send(self):
-        check_call(['smp_write_gpio', '--count=1', '--data=%x,%x,%x,%x' % (self._hexchop(24), self._hexchop(16), self._hexchop(8), self._hexchop(0)), '-t', '4', '--index=1', self.dev]) 
+        check_call(['smp_write_gpio', '--count=1', '--data=%x,%x,%x,%x' % (self._hexchop(24), self._hexchop(16), self._hexchop(8), self._hexchop(0)), '-t', '4', '--index=1', '%s/dev' % self.dev]) 
