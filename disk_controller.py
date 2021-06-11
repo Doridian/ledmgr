@@ -8,14 +8,6 @@ class DiskController(BaseController):
         super().__init__(config)
 
     def get_index(self, disk):
-        while True:
-            statres = stat(disk)
-            if not S_ISLNK(statres.st_mode):
-                break
-            disk = readlink(disk)
-
-        disk = abspath(disk)
-
         if not disk.startswith(self.dev):
             return -9001
 

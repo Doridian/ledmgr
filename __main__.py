@@ -1,10 +1,10 @@
 from disk_controller import DiskController
 from led_controller_em_message import EMMessageLEDController
-from led_controller import LED_FAIL, LED_LOCATE
 from led_controller_sgpio import SGPIOLEDController
-
-from time import sleep
-from json import load, dumps
+from json import load
+from os import stat, readlink
+from stat import S_ISLNK
+from os.path import abspath
 
 fh = open('config.json', 'r')
 config = load(fh)
@@ -30,6 +30,17 @@ for ctrlc in config['disk_controllers']:
     disk_controllers[ctrlo.id] = ctrlo
     print(ctrlo.dev, ctrlo.subdev, ctrlo.dev_value, ctrlo.subdev_value)
 
-for x in ['a','b','c','d','e','f','g','h']:
+def resolve_disk(disk):
+        while True:
+            statres = stat(disk)
+            if not S_ISLNK(statres.st_mode):
+                break
+            disk = readlink(disk)
+
+        disk = abspath(disk)
+        return disk
+
+for x in ['a','b','c','d','e','f','g']:
     for _, ctrl in disk_controllers.items():
-        print(ctrl, x,  ctrl.get_index('/dev/sd%s' % x))
+        dev = resolve_disk('/dev/sd%s' % x)
+        print(ctrl, x, ctrl.get_index(dev))
