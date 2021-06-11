@@ -43,4 +43,4 @@ def resolve_disk(disk):
 for x in ['a','b','c','d','e','f','g']:
     for _, ctrl in disk_controllers.items():
         dev = resolve_disk('/dev/sd%s' % x)
-        print(ctrl, x, ctrl.get_index(dev))
+        print(ctrl, dev, ctrl.get_index(dev))
