@@ -1,7 +1,4 @@
 from base_controller import BaseController
-from os import readlink, stat
-from os.path import abspath
-from stat import S_ISLNK
 
 class DiskController(BaseController):
     def __init__(self, config):

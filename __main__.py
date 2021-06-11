@@ -4,7 +4,7 @@ from led_controller_sgpio import SGPIOLEDController
 from json import load
 from os import lstat, readlink
 from stat import S_ISLNK
-from os.path import abspath
+from os.path import abspath, join
 
 fh = open('config.json', 'r')
 config = load(fh)
@@ -32,10 +32,11 @@ for ctrlc in config['disk_controllers']:
 
 def resolve_disk(disk):
         while True:
+            disk = abspath(disk)
             statres = lstat(disk)
             if not S_ISLNK(statres.st_mode):
                 break
-            disk = readlink(disk)
+            disk = join(disk, readlink(disk))
 
         disk = abspath(disk)
         return disk
