@@ -26,6 +26,10 @@ class EMMessageController(Controller):
             ledbit = LEDBIT_FAIL
         elif led == LED_LOCATE:
             ledbit = LEDBIT_LOCATE
+
+        fh = open(sysfs, 'r')
+        fd = fh.read()
+        fh.close()
         
         while True:
             try:
