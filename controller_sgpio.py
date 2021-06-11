@@ -27,7 +27,7 @@ class SGPIOController(Controller):
         self.send()
 
     def _ledbase(self, idx):
-        return 32 - (idx * 3)
+        return idx * 3
 
     def _hexchop(self, b):
         return (self.state >> b) & 0xFF
