@@ -10,7 +10,7 @@ class DiskController(BaseController):
 
         # TODO: This is kinda stupid...
         for i in range(self.subdev_value, 100):
-            if disk.startswith('%s/%s' % (self.dev, self.subdev.replace('#', '%d' % i))):
+            if disk.startswith('%s/%s/' % (self.dev, self.subdev.replace('#', '%d' % i))):
                 return (i - self.subdev_value)
 
         return -9002
