@@ -1,4 +1,4 @@
-from os.path import exists
+from os.path import exists, abspath
 
 def find_char_offset(pattern, char):
     if not char in pattern:
@@ -15,6 +15,7 @@ class BaseController:
     def __init__(self, config):
         self.id = config['id']
         self.dev_value, self.dev = find_char_offset(config['dev'], '*')
+        self.dev = abspath(self.dev)
 
         if 'subdev' not in config:
             self.subdev = None
