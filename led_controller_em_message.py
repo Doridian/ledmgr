@@ -14,7 +14,7 @@ class EMMessageLEDController(LEDController):
             self._write(i, LED_OFF)
 
     def _sysfs_name(self, idx):
-        return '%s/%s' % (self.dev, self.subdev.replace('#', '%d' % (idx + self.subdev_value)))
+        return '%s/%s/em_message' % (self.dev, self.subdev.replace('#', '%d' % (idx + self.subdev_value)))
 
     def _write(self, idx, led):
         sysfs = self._sysfs_name(idx)
