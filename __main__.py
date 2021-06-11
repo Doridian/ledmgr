@@ -34,7 +34,7 @@ def resolve_disk(disk):
             statres = lstat(disk)
             if not S_ISLNK(statres.st_mode):
                 break
-            disk = join(pathname(disk), readlink(disk))
+            disk = join(dirname(disk), readlink(disk))
 
         disk = abspath(disk)
         return disk
