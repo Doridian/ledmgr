@@ -30,22 +30,9 @@ for ctrlc in config['disk_controllers']:
     disk_controllers[ctrlo.id] = ctrlo
     print(ctrlo.dev, ctrlo.subdev, ctrlo.dev_value, ctrlo.subdev_value)
 
-"""
-ctrl = EMMessageLEDController('/sys/devices/pci0000:00/0000:00:11.0/0000:05:00.0/host7/bsg/sas_host7', 4)
-for i in range(0,4):
-    print('Setting LED %d' % i)
-    ctrl.write(i, LED_LOCATE)
-    sleep(1)
-    ctrl.write(i, LED_FAIL)
-    sleep(1)
-ctrl.clear()
-
-ctrl = SGPIOLEDController('/sys/devices/pci0000:00/0000:00:1f.2', 6)
-for i in range(0,4):
-    print('Setting LED2 %d' % i)
-    ctrl.write(i, LED_LOCATE)
-    sleep(1)
-    ctrl.write(i, LED_FAIL)
-    sleep(1)
-ctrl.clear()
-"""
+for ctrl in led_controllers:
+    for i in range(0, ctrl.count):
+        print(ctrl, i)
+        ctrl.write(i, LED_LOCATE)
+        sleep(1)
+    ctrl.clear()
