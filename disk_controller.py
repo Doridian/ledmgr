@@ -33,5 +33,6 @@ class DiskController(BaseController):
                 devphysub = '%s/%s/' % (found_devphy, self.subdev.replace('#', '%d' % i))
                 if exists(devphysub):
                     found_i = i
+                    break
 
         return found_i - self.subdev_value
