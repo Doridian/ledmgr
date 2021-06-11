@@ -80,6 +80,9 @@ def clear_all():
         for _, octrl in led_controllers.items():
             octrl.clear()
 
+if len(argv) < 2:
+    clear_all()
+    return
 d = argv[1]
 print(d)
 call(['smartctl', '-i', d])
