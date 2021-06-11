@@ -29,7 +29,6 @@ for ctrlc in config['disk_controllers']:
 
 def resolve_disk(disk):
         while True:
-            print(disk)
             disk = abspath(disk)
             statres = lstat(disk)
             if not S_ISLNK(statres.st_mode):
