@@ -31,7 +31,7 @@ for ctrlc in config['disk_controllers']:
 
 for map in config['mappings']:
     to = ':'.split(map['to'])
-    mappings[map['from']] = (led_controllers[to], int(to[1]))
+    mappings[map['from']] = (led_controllers[to[0]], int(to[1]))
 
 def resolve_disk(disk):
         while True:
