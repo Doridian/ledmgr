@@ -3,6 +3,11 @@ from controller import LED_FAIL, LED_LOCATE
 from controller_sgpio import SGPIOController
 
 from time import sleep
+from json import load
+
+fh = open('config.json', 'r')
+config = load(fh)
+fh.close()
 
 ctrl = SGPIOController('/sys/devices/pci0000:00/0000:00:11.0/0000:05:00.0/host7/bsg/sas_host7', 4)
 for i in range(0,4):

@@ -1,0 +1,72 @@
+{
+    "led_controllers": [
+        {
+            "id": "SATA",
+            "dev": "/sys/devices/pci0000:00/0000:00:1f.2",
+            "type": "SGPIO",
+            "count": 6
+        },
+        {
+            "__TODO__": "DYNAMIC FINDING OF host7",
+            "id": "SCU",
+            "dev": "/sys/devices/pci0000:00/0000:00:11.0/0000:05:00.0/host7/bsg/sas_host7",
+            "type": "em_message",
+            "count": 4
+        }
+    ],
+    "disk_controllers": [
+        {
+            "id": "SATA",
+            "basepath": "/sys/devices/pci0000:00/0000:00:1f.2/",
+            "subdev": "ata#"
+        },
+        {
+            "__TODO__": "DYNAMIC FINDING OF X",
+            "id": "SAS",
+            "basepath": "/pci0000:00/0000:00:02.0/0000:03:00.0/hostX/",
+            "subdev": "port-X:#"
+        }
+    ],
+    "mappings": [
+        {
+            "from": "SATA:0",
+            "to": "SATA:0"
+        },
+        {
+            "from": "SATA:1",
+            "to": "SATA:1"
+        },
+        {
+            "from": "SAS:0",
+            "to": "SATA:3"
+        },
+        {
+            "from": "SAS:1",
+            "to": "SCU:0"
+        },
+        {
+            "from": "SAS:2",
+            "to": "SCU:3"
+        },
+        {
+            "from": "SAS:3",
+            "to": "SCU:2"
+        },
+        {
+            "from": "SAS:9",
+            "to": "SCU:1"
+        },
+        {
+            "from": "SAS:10",
+            "to": "SATA:2"
+        },
+        {
+            "from": "SAS:11",
+            "to": "SATA:4"
+        },
+        {
+            "from": "SAS:12",
+            "to": "SATA:5"
+        }
+    ]
+}
