@@ -2,7 +2,7 @@ from disk_controller import DiskController
 from led_controller_em_message import EMMessageLEDController
 from led_controller_sgpio import SGPIOLEDController
 from json import load
-from os import stat, readlink
+from os import lstat, readlink
 from stat import S_ISLNK
 from os.path import abspath
 
@@ -32,7 +32,7 @@ for ctrlc in config['disk_controllers']:
 
 def resolve_disk(disk):
         while True:
-            statres = stat(disk)
+            statres = lstat(disk)
             if not S_ISLNK(statres.st_mode):
                 break
             disk = readlink(disk)
