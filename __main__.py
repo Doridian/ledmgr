@@ -8,3 +8,4 @@ for i in range(0,4):
     print("Setting LED %d" % i)
     ctrl.write(i, LED_FAIL)
     sleep(1)
+ctrl.clear()
