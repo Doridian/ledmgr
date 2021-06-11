@@ -82,6 +82,6 @@ for x in ['a','b','c','d','e','f','g']:
     print(d)
     call(['smartctl', '-i', d])
     set_disk_led(d, LED_FAIL)
-    sleep(1)
+    input('WAITING...')
 
 clear_all()
