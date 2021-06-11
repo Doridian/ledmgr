@@ -31,5 +31,5 @@ for ctrlc in config['disk_controllers']:
     print(ctrlo.dev, ctrlo.subdev, ctrlo.dev_value, ctrlo.subdev_value)
 
 for x in ['a','b','c','d','e','f','g','h']:
-    for ctrl in disk_controllers:
+    for _, ctrl in disk_controllers.items():
         print(ctrl, x,  ctrl.get_index('/dev/sd%s' % x))
