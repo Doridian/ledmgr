@@ -8,6 +8,7 @@ from json import load
 from os import lstat, readlink
 from os.path import abspath, join, dirname
 from stat import S_ISLNK
+from sys import argv
 
 fh = open('config.json', 'r')
 config = load(fh)
@@ -78,11 +79,7 @@ def clear_all():
         for _, octrl in led_controllers.items():
             octrl.clear()
 
-for x in ['a','b','c','d','e','f','g']:
-    d = '/dev/sd%s' % x
-    print(d)
-    call(['smartctl', '-i', d])
-    set_disk_led(d, LED_FAIL)
-    input('WAITING...')
-
-clear_all()
+d = argv[1]
+print(d)
+call(['smartctl', '-i', d])
+set_disk_led(d, LED_FAIL)
