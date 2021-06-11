@@ -1,3 +1,5 @@
+from led_controller import LED_FAIL
+from time import sleep
 from disk_controller import DiskController
 from led_controller_em_message import EMMessageLEDController
 from led_controller_sgpio import SGPIOLEDController
@@ -27,6 +29,10 @@ for ctrlc in config['disk_controllers']:
     ctrlo = DiskController(ctrlc)
     disk_controllers[ctrlo.id] = ctrlo
 
+for map in config['mappings']:
+    to = ':'.split(map['to'])
+    mappings[map['from']] = (led_controllers[to], int(to[1]))
+
 def resolve_disk(disk):
         while True:
             disk = abspath(disk)
@@ -40,9 +46,37 @@ def resolve_disk(disk):
         disk = abspath(disk)
         return disk
 
-for x in ['a','b','c','d','e','f','g']:
+def find_disk_controller(disk):
+    disk = resolve_disk(disk)
     for _, ctrl in disk_controllers.items():
-        dev = resolve_disk('/dev/sd%s' % x)
-        idx = ctrl.get_index(dev)
-        if idx >= 0:
-            print(ctrl, dev, x, idx)
+        idx = ctrl.get_index(disk)
+        if idx > 0:
+            return (ctrl, idx)
+    return (None, -9001)
+
+def map_disk(disk):
+    ctrl, idx = find_disk_controller(disk)
+    if not ctrl:
+        return (None, -9001)
+    return mappings['%s:%d' % (ctrl.id, idx)]
+
+def set_disk_led(disk, led, clear=True):
+    ctrl, idx = map_disk(disk)
+    if not ctrl:
+        return
+
+    ctrl.write(idx, led, clear)
+
+    if clear:
+        for _, octrl in led_controllers.items():
+            if octrl.id != ctrl.id:
+                octrl.clear()
+
+def clear_all():
+        for _, octrl in led_controllers.items():
+            octrl.clear()
+
+for x in ['a','b','c','d','e','f','g']:
+    print(x)
+    set_disk_led('/dev/sd%s' % x, LED_FAIL)
+    sleep(1)
