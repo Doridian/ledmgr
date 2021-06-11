@@ -4,7 +4,7 @@ from led_controller import LED_FAIL, LED_LOCATE
 from led_controller_sgpio import SGPIOLEDController
 
 from time import sleep
-from json import load
+from json import load, dumps
 
 fh = open('config.json', 'r')
 config = load(fh)
@@ -26,8 +26,8 @@ for ctrlc in config['disk_controllers']:
     ctrlo = DiskController(ctrlc)
     disk_controllers[ctrlo.id] = ctrlo
 
-print(led_controllers)
-print(disk_controllers)
+print(dumps(led_controllers))
+print(dumps(disk_controllers))
 
 """
 ctrl = EMMessageLEDController('/sys/devices/pci0000:00/0000:00:11.0/0000:05:00.0/host7/bsg/sas_host7', 4)
