@@ -53,6 +53,7 @@ def find_disk_controller(disk):
     for _, ctrl in disk_controllers.items():
         idx = ctrl.get_index(disk)
         if idx >= 0:
+            print("DISK", ctrl, idx)
             return (ctrl, idx)
     return (None, -9001)
 
@@ -67,7 +68,7 @@ def set_disk_led(disk, led, clear=True):
     if not ctrl:
         return
 
-    print(ctrl, idx, led)
+    print("LED", ctrl, idx, led)
     ctrl.write(idx, led, clear)
 
     if clear:
