@@ -30,7 +30,7 @@ for ctrlc in config['disk_controllers']:
     disk_controllers[ctrlo.id] = ctrlo
     print(ctrlo.dev, ctrlo.subdev, ctrlo.dev_value, ctrlo.subdev_value)
 
-for ctrl in led_controllers:
+for _, ctrl in led_controllers:
     for i in range(0, ctrl.count):
         print(ctrl, i)
         ctrl.write(i, LED_LOCATE)
