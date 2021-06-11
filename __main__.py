@@ -82,8 +82,8 @@ def clear_all():
 
 if len(argv) < 2:
     clear_all()
-    return
-d = argv[1]
-print(d)
-call(['smartctl', '-i', d])
-set_disk_led(d, LED_FAIL)
+else:
+    d = argv[1]
+    print(d)
+    call(['smartctl', '-i', d])
+    set_disk_led(d, LED_FAIL)
