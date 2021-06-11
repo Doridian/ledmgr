@@ -20,11 +20,9 @@ class DiskController(BaseController):
         # TODO: This is kinda stupid...
         found_devphy = None
         found_i = -9002
-        for i in range(1, 100):
+        for i in range(0, 100):
             devphy = '%s/%s/' % (self.dev, subdev_find.replace('#', '%d' % i))
-            print(disk, devphy)
             if disk.startswith(devphy):
-                print("A", devphy)
                 found_devphy = devphy
                 found_i = i
                 break
@@ -33,7 +31,6 @@ class DiskController(BaseController):
             found_i = -9003
             for i in range(self.subdev_value, 100): 
                 devphysub = '%s/%s/' % (found_devphy, self.subdev.replace('#', '%d' % i))
-                print("B", devphysub)
                 if exists(devphysub):
                     found_i = i
                     break
