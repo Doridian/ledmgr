@@ -32,6 +32,8 @@ def resolve_disk(disk):
             disk = abspath(disk)
             statres = lstat(disk)
             if not S_ISLNK(statres.st_mode):
+                if disk.startswith('/dev/'):
+                    return resolve_disk('/sys/block/%s' % disk[5:])
                 break
             disk = join(dirname(disk), readlink(disk))
 
@@ -40,7 +42,7 @@ def resolve_disk(disk):
 
 for x in ['a','b','c','d','e','f','g']:
     for _, ctrl in disk_controllers.items():
-        dev = resolve_disk('/sys/block/sd%s' % x)
+        dev = resolve_disk('/dev/sd%s' % x)
         idx = ctrl.get_index(dev)
         if idx >= 0:
             print(ctrl, dev, x, idx)
