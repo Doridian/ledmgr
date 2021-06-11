@@ -36,8 +36,6 @@ class EMMessageController(Controller):
         if fd == data:
             return
 
-        print("W %d %d", idx, led)
-        
         while True:
             try:
                 fh = open(sysfs, 'w')
