@@ -27,21 +27,27 @@ class EMMessageController(Controller):
         elif led == LED_LOCATE:
             ledbit = LEDBIT_LOCATE
 
+        data = "%d\n" % ledbit
+
         fh = open(sysfs, 'r')
         fd = fh.read()
         fh.close()
+
+        if fd == data:
+            return
+
+        print("W %d %d", idx, led)
         
         while True:
             try:
                 fh = open(sysfs, 'w')
                 fh.write("%d\n" % ledbit)
                 fh.close()
-                return
+                break
             except OSError as e:
                 if e.errno != EBUSY:
                     raise e
-            print("WAIT...")
-            sleep(0.01)
+            sleep(0.05)
 
     def write(self, idx, led, clear=True):
         self._write(idx, led)
