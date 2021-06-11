@@ -13,6 +13,7 @@ class EMMessageController(Controller):
             self._write(i, LED_OFF)
 
     def _sysfs_name(self, idx):
+        idx += 1
         return "%s/ata%d/host%d/scsi_host/host%d/em_message" % (self.dev, idx, idx, idx)
 
     def _write(self, idx, led):
