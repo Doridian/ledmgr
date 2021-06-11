@@ -22,6 +22,7 @@ class DiskController(BaseController):
         found_i = -9002
         for i in range(1, 100):
             devphy = '%s/%s/' % (self.dev, subdev_find.replace('#', '%d' % i))
+            print(disk, devphy)
             if disk.startswith(devphy):
                 print("A", devphy)
                 found_devphy = devphy
