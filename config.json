@@ -17,12 +17,12 @@
     "disk_controllers": [
         {
             "id": "SATA",
-            "dev": "/sys/devices/pci0000:00/0000:00:1f.2/",
+            "dev": "/sys/devices/pci0000:00/0000:00:1f.2",
             "subdev": "ata#"
         },
         {
             "id": "SAS",
-            "dev": "/pci0000:00/0000:00:02.0/0000:03:00.0/host*/",
+            "dev": "/sys/devices/pci0000:00/0000:00:02.0/0000:03:00.0/host*",
             "subdev": "port-*:#"
         }
     ],
