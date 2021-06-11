@@ -13,6 +13,7 @@ fh.close()
 led_controllers = {}
 disk_controllers = {}
 mappings = {}
+print("LED")
 for ctrlc in config['led_controllers']:
     type = ctrlc['type'].lower()
     if type == 'em_message':
@@ -21,13 +22,13 @@ for ctrlc in config['led_controllers']:
         CTor = SGPIOLEDController
     ctrlo = CTor(ctrlc)
     led_controllers[ctrlo.id] = ctrlo
+    print(ctrlo.dev, ctrlo.subdev, ctrlo.dev_value, ctrlo.subdev_value)
 
+print("DISK")
 for ctrlc in config['disk_controllers']:
     ctrlo = DiskController(ctrlc)
     disk_controllers[ctrlo.id] = ctrlo
-
-print(dumps(led_controllers))
-print(dumps(disk_controllers))
+    print(ctrlo.dev, ctrlo.subdev, ctrlo.dev_value, ctrlo.subdev_value)
 
 """
 ctrl = EMMessageLEDController('/sys/devices/pci0000:00/0000:00:11.0/0000:05:00.0/host7/bsg/sas_host7', 4)
