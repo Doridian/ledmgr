@@ -3,8 +3,8 @@ from led_controller_em_message import EMMessageLEDController
 from led_controller_sgpio import SGPIOLEDController
 from json import load
 from os import lstat, readlink
+from os.path import abspath, join, dirname
 from stat import S_ISLNK
-from os.path import abspath, join
 
 fh = open('config.json', 'r')
 config = load(fh)
@@ -13,7 +13,7 @@ fh.close()
 led_controllers = {}
 disk_controllers = {}
 mappings = {}
-print("LED")
+
 for ctrlc in config['led_controllers']:
     type = ctrlc['type'].lower()
     if type == 'em_message':
@@ -22,13 +22,10 @@ for ctrlc in config['led_controllers']:
         CTor = SGPIOLEDController
     ctrlo = CTor(ctrlc)
     led_controllers[ctrlo.id] = ctrlo
-    print(ctrlo.dev, ctrlo.subdev, ctrlo.dev_value, ctrlo.subdev_value)
 
-print("DISK")
 for ctrlc in config['disk_controllers']:
     ctrlo = DiskController(ctrlc)
     disk_controllers[ctrlo.id] = ctrlo
-    print(ctrlo.dev, ctrlo.subdev, ctrlo.dev_value, ctrlo.subdev_value)
 
 def resolve_disk(disk):
         while True:
@@ -37,7 +34,7 @@ def resolve_disk(disk):
             statres = lstat(disk)
             if not S_ISLNK(statres.st_mode):
                 break
-            disk = join(disk, readlink(disk))
+            disk = join(pathname(disk), readlink(disk))
 
         disk = abspath(disk)
         return disk
