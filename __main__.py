@@ -1,3 +1,4 @@
+from subprocess import call
 from led_controller import LED_FAIL
 from time import sleep
 from disk_controller import DiskController
@@ -77,6 +78,10 @@ def clear_all():
             octrl.clear()
 
 for x in ['a','b','c','d','e','f','g']:
-    print(x)
-    set_disk_led('/dev/sd%s' % x, LED_FAIL)
+    d = '/dev/sd%s' % x
+    print(d)
+    call(['smartctl', '-i', d])
+    set_disk_led(d, LED_FAIL)
     sleep(1)
+
+clear_all()
