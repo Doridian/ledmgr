@@ -1,12 +1,12 @@
-from controller import Controller, LED_FAIL, LED_LOCATE
+from led_controller import LEDController, LED_FAIL, LED_LOCATE
 from subprocess import check_call
 
 LEDBIT_FAIL   = 0b100
 LEDBIT_LOCATE = 0b010
 
-class SGPIOController(Controller):
-    def __init__(self, dev, count):
-        super().__init__(dev, count)
+class SGPIOLEDController(LEDController):
+    def __init__(self, config):
+        super().__init__(config)
         self.state = 0
 
     def clear(self):

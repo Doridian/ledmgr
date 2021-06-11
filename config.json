@@ -3,14 +3,14 @@
         {
             "id": "SATA",
             "dev": "/sys/devices/pci0000:00/0000:00:1f.2",
-            "type": "SGPIO",
+            "subdev": "ata#/host#/scsi_host/host#",
+            "type": "em_message",
             "count": 6
         },
         {
-            "__TODO__": "DYNAMIC FINDING OF host7",
             "id": "SCU",
-            "dev": "/sys/devices/pci0000:00/0000:00:11.0/0000:05:00.0/host7/bsg/sas_host7",
-            "type": "em_message",
+            "dev": "/sys/devices/pci0000:00/0000:00:11.0/0000:05:00.0/host*/bsg/sas_host*",
+            "type": "SGPIO",
             "count": 4
         }
     ],
@@ -21,10 +21,9 @@
             "subdev": "ata#"
         },
         {
-            "__TODO__": "DYNAMIC FINDING OF X",
             "id": "SAS",
-            "basepath": "/pci0000:00/0000:00:02.0/0000:03:00.0/hostX/",
-            "subdev": "port-X:#"
+            "basepath": "/pci0000:00/0000:00:02.0/0000:03:00.0/host*/",
+            "subdev": "port-*:#"
         }
     ],
     "mappings": [

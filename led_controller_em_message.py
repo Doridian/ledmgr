@@ -1,22 +1,20 @@
-from controller_sgpio import LEDBIT_FAIL
-from controller import Controller, LED_FAIL, LED_LOCATE, LED_OFF
+from led_controller import LEDController, LED_FAIL, LED_LOCATE, LED_OFF
 from errno import EBUSY
 from time import sleep
 
 LEDBIT_FAIL   = 0b1 << 22
 LEDBIT_LOCATE = 0b1 << 19
 
-class EMMessageController(Controller):
-    def __init__(self, dev, count):
-        super().__init__(dev, count)
+class EMMessageLEDController(LEDController):
+    def __init__(self, config):
+        super().__init__(config)
 
     def clear(self):
         for i in range(0, self.count):
             self._write(i, LED_OFF)
 
     def _sysfs_name(self, idx):
-        idx += 1
-        return "%s/ata%d/host%d/scsi_host/host%d/em_message" % (self.dev, idx, idx, idx)
+        return self.subdev.replace('#', '%d' % (idx + self.subdev_value))
 
     def _write(self, idx, led):
         sysfs = self._sysfs_name(idx)
@@ -27,7 +25,7 @@ class EMMessageController(Controller):
         elif led == LED_LOCATE:
             ledbit = LEDBIT_LOCATE
 
-        data = "%d\n" % ledbit
+        data = '%d\n' % ledbit
 
         fh = open(sysfs, 'r')
         fd = fh.read()
@@ -39,7 +37,7 @@ class EMMessageController(Controller):
         while True:
             try:
                 fh = open(sysfs, 'w')
-                fh.write("%d\n" % ledbit)
+                fh.write('%d\n' % ledbit)
                 fh.close()
                 break
             except OSError as e:
