@@ -5,8 +5,8 @@ LEDBIT_FAIL   = 0b010
 LEDBIT_LOCATE = 0b100
 
 class SGPIOController(Controller):
-    def __init__(self, dev):
-        super().__init__(dev)
+    def __init__(self, dev, count):
+        super().__init__(dev, count)
         self.state = 0
 
     def clear(self):
