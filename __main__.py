@@ -51,7 +51,7 @@ def find_disk_controller(disk):
     disk = resolve_disk(disk)
     for _, ctrl in disk_controllers.items():
         idx = ctrl.get_index(disk)
-        if idx > 0:
+        if idx >= 0:
             return (ctrl, idx)
     return (None, -9001)
 
