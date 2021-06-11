@@ -9,11 +9,15 @@ for i in range(0,4):
     print("Setting LED %d" % i)
     ctrl.write(i, LED_LOCATE)
     sleep(1)
+    ctrl.write(i, LED_FAIL)
+    sleep(1)
 ctrl.clear()
 
 ctrl = EMMessageController('/sys/devices/pci0000:00/0000:00:1f.2', 6)
 for i in range(0,4):
     print("Setting LED2 %d" % i)
     ctrl.write(i, LED_LOCATE)
+    sleep(1)
+    ctrl.write(i, LED_FAIL)
     sleep(1)
 ctrl.clear()
