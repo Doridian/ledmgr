@@ -1,5 +1,7 @@
 from controller_sgpio import LEDBIT_FAIL
 from controller import Controller, LED_FAIL, LED_LOCATE, LED_OFF
+from errno import EBUSY
+from time import sleep
 
 LEDBIT_FAIL   = 0b1 << 22
 LEDBIT_LOCATE = 0b1 << 19
@@ -25,9 +27,17 @@ class EMMessageController(Controller):
         elif led == LED_LOCATE:
             ledbit = LEDBIT_LOCATE
         
-        fh = open(sysfs, 'w')
-        fh.write("%d\n" % ledbit)
-        fh.close()
+        while True:
+            try:
+                fh = open(sysfs, 'w')
+                fh.write("%d\n" % ledbit)
+                fh.close()
+                return
+            except OSError as e:
+                if e.errno != EBUSY:
+                    raise e
+            print("WAIT...")
+            sleep(0.01)
 
     def write(self, idx, led, clear=True):
         self._write(idx, led)
