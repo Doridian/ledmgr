@@ -66,6 +66,7 @@ def set_disk_led(disk, led, clear=True):
     if not ctrl:
         return
 
+    print(ctrl, idx, led)
     ctrl.write(idx, led, clear)
 
     if clear:
