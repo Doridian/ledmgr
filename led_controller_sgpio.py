@@ -1,7 +1,8 @@
-from led_controller import LEDController, LED_FAIL, LED_LOCATE, LED_REBUILD
+from led_controller import LEDController, LED_FAIL, LED_LOCATE, LED_OFF, LED_REBUILD
 from subprocess import check_call
 
 ledmap = {}
+ledmap[LED_OFF]     = 0b000
 ledmap[LED_FAIL]    = 0b100
 ledmap[LED_LOCATE]  = 0b010
 ledmap[LED_REBUILD] = 0b110

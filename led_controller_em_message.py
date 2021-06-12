@@ -3,6 +3,7 @@ from errno import EBUSY
 from time import sleep
 
 ledmap = {}
+ledmap[LED_OFF]     = 0
 ledmap[LED_FAIL]    = 0b1 << 22
 ledmap[LED_LOCATE]  = 0b1 << 19
 ledmap[LED_REBUILD] = ledmap[LED_FAIL] | ledmap[LED_LOCATE]
