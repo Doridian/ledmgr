@@ -1,5 +1,5 @@
 from subprocess import call
-from led_controller import LED_FAIL
+from led_controller import LED_FAIL, LED_LOCATE, LED_OFF, LED_REBUILD
 from time import sleep
 from disk_controller import DiskController
 from led_controller_em_message import EMMessageLEDController
@@ -53,7 +53,6 @@ def find_disk_controller(disk):
     for _, ctrl in disk_controllers.items():
         idx = ctrl.get_index(disk)
         if idx >= 0:
-            print("DISK", ctrl, idx)
             return (ctrl, idx)
     return (None, -9001)
 
@@ -68,7 +67,6 @@ def set_disk_led(disk, led, clear=True):
     if not ctrl:
         return
 
-    print("LED", ctrl, idx, led)
     ctrl.write(idx, led, clear)
 
     if clear:
@@ -87,3 +85,9 @@ else:
     print(d)
     call(['smartctl', '-i', d])
     set_disk_led(d, LED_FAIL)
+    sleep(1)
+    set_disk_led(d, LED_LOCATE)
+    sleep(1)
+    set_disk_led(d, LED_REBUILD)
+    sleep(1)
+    set_disk_led(d, LED_OFF)
