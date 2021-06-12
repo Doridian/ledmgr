@@ -23,6 +23,7 @@ if args.clear:
 
 for ledspec in args.leds:
     led, disk = ledspec.split('=', 1)
-    config.set_disk_led(disk, led)
+    ledval = LEDSTATE_BY_STRING[led.lower()]
+    config.set_disk_led(disk, ledval)
 
 config.send_all()
