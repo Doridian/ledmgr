@@ -14,7 +14,7 @@ class SGPIOLEDController(LEDController):
 
     def clear(self):
         self.state = 0
-        self.send()
+        self._send()
 
     def write(self, idx, led, clear=True):
         ledbase = self._ledbase(idx)
