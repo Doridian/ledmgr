@@ -13,5 +13,8 @@ class LEDController(BaseController):
     def clear(self):
         raise NotImplementedError()
 
-    def write(self, idx, led, clear=True):
+    def write(self, idx, led):
+        raise NotImplementedError()
+
+    def send(self):
         raise NotImplementedError()
