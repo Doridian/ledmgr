@@ -1,4 +1,3 @@
-from led_controller_em_message import LEDBIT_REBUILD
 from led_controller import LEDController, LED_FAIL, LED_LOCATE, LED_REBUILD
 from subprocess import check_call
 
