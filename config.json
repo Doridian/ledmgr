@@ -16,12 +16,13 @@
     ],
     "disk_controllers": [
         {
-            "id": "SATA",
-            "dev": "/sys/devices/pci0000:00/0000:00:1f.2",
-            "subdev": "ata#"
+            "id": "SAS-8i",
+            "dev": "/sys/devices/pci0000:00/0000:00:03.0/0000:04:00.0/host*",
+            "subdev": "phy-*:#",
+            "subdev_find": "port-*:#"
         },
         {
-            "id": "SAS",
+            "id": "SAS-4i4e",
             "dev": "/sys/devices/pci0000:00/0000:00:02.0/0000:03:00.0/host*",
             "subdev": "phy-*:#",
             "subdev_find": "port-*:#"
@@ -29,43 +30,43 @@
     ],
     "mappings": [
         {
-            "from": "SATA:0",
+            "from": "SAS-4i4e:6",
             "to": "SATA:0"
         },
         {
-            "from": "SATA:1",
+            "from": "SAS-4i4e:7",
             "to": "SATA:1"
         },
         {
-            "from": "SAS:0",
+            "from": "SAS-8i:0",
             "to": "SCU:1"
         },
         {
-            "from": "SAS:1",
+            "from": "SAS-8i:1",
             "to": "SCU:0"
         },
         {
-            "from": "SAS:2",
+            "from": "SAS-8i:2",
             "to": "SATA:3"
         },
         {
-            "from": "SAS:3",
+            "from": "SAS-8i:3",
             "to": "SATA:2"
         },
         {
-            "from": "SAS:4",
+            "from": "SAS-8i:4",
             "to": "SATA:5"
         },
         {
-            "from": "SAS:5",
+            "from": "SAS-8i:5",
             "to": "SATA:4"
         },
         {
-            "from": "SAS:6",
+            "from": "SAS-8i:6",
             "to": "SCU:3"
         },
         {
-            "from": "SAS:7",
+            "from": "SAS-8i:7",
             "to": "SCU:2"
         }
     ]

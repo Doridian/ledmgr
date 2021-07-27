@@ -29,7 +29,7 @@ class DiskController(BaseController):
 
         if self.subdev_find:
             found_i = -9003
-            for i in range(self.subdev_value, 100): 
+            for i in range(self.subdev_value, 100):
                 devphysub = '%s/%s/' % (found_devphy, self.subdev.replace('#', '%d' % i))
                 if exists(devphysub):
                     found_i = i

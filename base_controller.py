@@ -2,14 +2,14 @@ from os.path import exists, abspath
 
 def find_char_offset(pattern, char):
     if not char in pattern:
-        return (-9001, pattern)
+        return (-8001, pattern)
 
     for i in range(0, 100):
         dev = pattern.replace(char, '%d' % i)
         if exists(dev):
             return (i, dev)
 
-    return (-9002, pattern)
+    return (-8002, pattern)
 
 class BaseController:
     def __init__(self, config):
@@ -19,7 +19,7 @@ class BaseController:
 
         if 'subdev' not in config:
             self.subdev = None
-            self.subdev_value = -9003
+            self.subdev_value = -8003
             return
 
         subdev = config['subdev'].replace('*', '%d' % self.dev_value)
