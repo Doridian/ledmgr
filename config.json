@@ -32,11 +32,11 @@
     "mappings": [
         {
             "from": "SAS-4i4e:6",
-            "to": "SATA:0"
+            "to": "SATA:1"
         },
         {
             "from": "SAS-4i4e:7",
-            "to": "SATA:1"
+            "to": "SATA:0"
         },
         {
             "from": "SAS-8i:0",
