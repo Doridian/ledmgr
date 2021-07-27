@@ -25,7 +25,10 @@ class EMMessageLEDController(LEDController):
             self._write(idx, led)
 
     def _sysfs_name(self, idx):
-        return '%s/%s/em_message' % (self.dev, self.subdev.replace('#', '%d' % (idx + self.subdev_value)))
+        return '%s/%s/em_message' % (self.dev, self.subdev
+            .replace('#', '%d' % (idx + self.subdev_value))
+            .replace('$', '%d' % (idx + self.subdev2_value))
+        )
 
     def _write(self, idx, led):
         if led == LED_KEEP:
