@@ -23,8 +23,12 @@ class BaseController:
             self.subdev2_value = -8003
             return
 
-        subdev = config['subdev'].replace('*', '%d' % self.dev_value)
-        self.subdev_value, _ = find_char_offset('%s/%s' % (self.dev, subdev), '#')
-        subdev2 = subdev.replace('#', '%d' % self.subdev_value)
+        self.subdev = config['subdev'].replace('*', '%d' % self.dev_value)
+
+        subdev1 = self.subdev
+        if 'subdev_pre' in config:
+            subdev1 = config['subdev_pre'].replace('*', '%d' % self.dev_value)
+        self.subdev_value, _ = find_char_offset('%s/%s' % (self.dev, subdev1), '#')
+
+        subdev2 = self.subdev.replace('#', '%d' % self.subdev_value)
         self.subdev2_value, _ = find_char_offset('%s/%s' % (self.dev, subdev2), '$')
-        self.subdev = subdev

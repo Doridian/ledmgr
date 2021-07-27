@@ -3,6 +3,7 @@
         {
             "id": "SATA",
             "dev": "/sys/devices/pci0000:00/0000:00:1f.2",
+            "subdev_pre": "ata#",
             "subdev": "ata#/host$/scsi_host/host$",
             "type": "em_message",
             "count": 6
