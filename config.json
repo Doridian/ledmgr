@@ -23,20 +23,25 @@
             "subdev_find": "port-*:#"
         },
         {
-            "id": "SAS-4i4e",
+            "id": "SAS-8e",
             "dev": "/sys/devices/pci0000:00/0000:00:02.0/0000:03:00.0/host*",
             "subdev": "phy-*:#",
             "subdev_find": "port-*:#"
+        },
+        {
+            "id": "SATA",
+            "dev": "/sys/devices/pci0000:00/0000:00:1f.2",
+            "subdev": "ata#"
         }
     ],
     "mappings": [
         {
-            "from": "SAS-4i4e:6",
-            "to": "SATA:1"
+            "from": "SATA:0",
+            "to": "SATA:0"
         },
         {
-            "from": "SAS-4i4e:7",
-            "to": "SATA:0"
+            "from": "SATA:1",
+            "to": "SATA:1"
         },
         {
             "from": "SAS-8i:0",
